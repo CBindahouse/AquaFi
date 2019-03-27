@@ -1,0 +1,71 @@
+\section{System Aims}
+The aim of the system that is being built at \ac{KAUST} is to provide a high
+speed point to point \ac{UOWC} link using lasers. The initial system will be
+static, but a sophisticated tracking system is being developed to ensure the
+lasers stay aligned with each other.
+
+\subsection{Current System}
+
+\subsubsection{Hardware}
+The current system at \ac{KAUST} is built using a Nichia Green laser (NDG7K75T)
+as the transmitter, and a Thorlabs DET10A2 Si Biased Detector for the receiver.
+
+The transmitter is connected via a Bias Tee to the UART TX line of a
+Raspberry Pi.
+
+The receiver is connected via an amplifier and comparator, to the RX UART
+line of the Raspberry Pi.
+
+This is duplicated on either side of the system, so that a full duplex
+system is realized.
+
+\subsubsection{Software}
+pppd is used to create an OOK link which is bridged to the Ethernet or
+WiFi interfaces.
+
+\subsection{System Issues}
+The main limitations of the system are as follows:
+
+\subsubsection{Poor performance}
+The current system is limited to a transmission rate of about 1 Mb/s. The use
+of the UART is the main limitation in terms of system performance. The baud
+rate cannot be pushed very high. In terms of interfaces, the Raspberry Pi has
+SPI, I2C and UART connections. None of these are suitable for a system
+targeting gigabit performance.
+
+A system requires higher speed interfaces, such as gigabit Ethernet,
+\ac{SFP}, \ac{PCIe} or \ac{USB} 3.0 and above.
+
+\subsubsection{\ac{AGC}}
+Currently the system must be tuned depending on the range by manually
+adjusting the amplifier at the receiver. This system needs refining so that
+the adjustments can be made electronically and in real time.
+
+In traditional \ac{AGC} the receiver starts each packet at maximum gain,
+which is then reduced as the preamble is received and the signal strength
+is measured.
+
+Another approach would be to measure the signal strength out of band and
+adjust accordingly, although this will not adapt quickly to changes in the
+channel.
+
+\subsubsection{Alignment}
+The laser beam is very narrow. It is very difficult to align the two ends
+to ensure consistent system performance. Both sides must track the other in
+order to adjust their beams accordingly.
+
+Beam alignment can be done in-band or out-of-band. In out-of-band, a different
+control mechanism is used to localize and track each station. There are two
+that are being thought about at the moment, the first being acoustic (which
+has been done previously) and the second using cameras to visually track the
+laser beam.
+
+An in-band system would use the laser link itself and measure the \ac{SNR} or
+\ac{RSSI} values received whilst moving the laser slightly, to ensure the best
+angle is chosen.
+
+If an in-band system is required, this must be factored in to the protocols
+used as time is required to utilize the lasers for measurements. This must
+be designed in from the outset and thus a system that understands beam forming
+and movable stations must be used. For example, an 802.11-based \ac{MAC} could
+be used, where the protocol allows for scanning time between nodes.

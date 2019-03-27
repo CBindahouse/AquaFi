@@ -1,0 +1,82 @@
+\section{Current Optical Systems}
+\subsection{\ac{UOWC}}
+There currently exists two commercial \ac{UOWC} systems.
+
+\subsubsection{Bluecomm \ac{UOWC}}
+This is manufactured by Sonardyne, a UK based company. It utilizes high power
+\ac{LED}s with a range of products depending on application, from shallow water
+to deep water, and when there are artificial lights being used (for example on
+\ac{ROV}s). They claim a maximum transmission rate of 500 Mb/s but for very
+short distances; longer distances are limited to around 5 - 10 Mb/s.
+
+\subsubsection{Anglerfish \ac{UOWC}}
+The Anglerfish \ac{UOWC} provides full-duplex voice communication between two
+divers, again using \ac{LED}s. It is designed for the military, and is
+difficult to intercept because of the directionality and unknown modulation
+frequencies.
+
+\subsection{Optical Wireless Communication}
+As well as underwater systems, there are also terrestrial based commercial
+systems utilizing visible light.
+
+\subsubsection{Li-Fi}
+Li-Fi was coined by Professor Harald Haas. The aim is to run standard 802.11
+protocols using visible light (using infrastructure already in place such as
+overhead bulbs), hence the similarity to Wi-Fi.
+
+There are two companies involved with Li-Fi, but PureLifi is the only one with
+a system on the market. They offer the PL0300, an integrated device
+implementing an 802.11 compatible stack with a USB interface. They claim
+86.4 Mb/s data rate.
+
+See \url{https://purelifi.com/wp-content/uploads/2019/02/pureLiFi-PL0300-ASICDatasheet.pdf}
+
+The other is Velmenni based in India.
+
+\subsubsection{IrDA / IrLAN}
+The Infrared Data Association provide a specification for gigabit transmissions
+using infrared light. IrLAN allows a unit to connect to a local area network.
+However, it has dropped out of use and there aren't really any available
+modules on the market anymore.
+
+\subsection{Wired}
+Wired interfaces designed for lasers may provide the exact requirements.
+
+However, wired interfaces can really only provide point to point
+communications. They have no knowledge of multi-point setups. Due to the use
+of a very directional laser, however, this may not be an issue.
+
+If in-band localization is required, a wired interface will not suffice.
+
+\subsubsection{\ac{SFP}}
+
+\url{https://www.snia.org/technology-communities/sff/specifications}
+
+Breakout board
+
+\url{https://sincsquared.com/sites/default/files/DataSheet_SS-SFP-SMA_0.pdf}
+
+\url{https://osmocom.org/issues/3313}
+
+\url{https://shop.trenz-electronic.de/en/TE0422-02-SFP-2-SMA-Adapter?path=Trenz_Electronic/Accessories/SFP/TE0422/REV02}
+
+\ac{SFP} outputs differential signal so need a subtractor to change this to
+a single ended signal appropriate for the laser. I believe these are known as
+amplifiers.
+
+See \url{https://electronics.stackexchange.com/questions/341592/differential-to-single-ended}
+
+\url{http://blog.svenbrauch.de/2017/02/19/homemade-10-mbits-laser-optical-ethernet-transceiver/}
+
+\subsubsection{Koruza}
+This is an implementation of \ac{SFP}-based optical transmissions using
+infra-red light.
+
+KORUZA - \url{https://github.com/IRNAS/KORUZA}
+
+KAUST already has some of these available to use. They claim up to 1 Gbit/s
+transfer rate. The nice thing about this project is that it is all open source,
+both the hardware and the software.
+
+There are currently no available \ac{SFP} transceivers working at the visible
+light (350nm and 420nm).
