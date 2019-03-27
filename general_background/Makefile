@@ -24,7 +24,7 @@ all: general_background_uowc.pdf
 # -interaction=nonstopmode keeps the pdflatex backend from stopping at a
 # missing file reference and interactively asking you for an alternative.
 
-general_background_uowc.pdf: general_background_uowc.tex
+general_background_uowc.pdf: *.tex
 	latexmk -pdf -pdflatex="pdflatex -interaction=nonstopmode" -use-make general_background_uowc.tex
 
 clean:
