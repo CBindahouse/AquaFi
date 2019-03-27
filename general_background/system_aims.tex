@@ -36,7 +36,7 @@ dnsmasq is provided at the access point end to automatically assign the phone
 an IP address.
 
 \subsection{System Issues}
-The main limitations of the system are as follows:
+The current systems suffers from a number of limitations.
 
 \subsubsection{Poor performance}
 The current system is limited to a transmission rate of about 1 Mb/s. The use
@@ -48,7 +48,7 @@ targeting gigabit performance.
 A system requires higher speed interfaces, such as gigabit Ethernet,
 \ac{SFP}, \ac{PCIe} or \ac{USB} 3.0 and above.
 
-\subsubsection{\ac{AGC}}
+\subsubsection{Lack of \ac{AGC}}
 Currently the system must be tuned depending on the range by manually
 adjusting the amplifier at the receiver. This system needs refining so that
 the adjustments can be made electronically and in real time.
@@ -58,10 +58,9 @@ which is then reduced as the preamble is received and the signal strength
 is measured.
 
 Another approach would be to measure the signal strength out of band and
-adjust accordingly, although this will not adapt quickly to changes in the
-channel.
+adjust accordingly. As the laser link is always on, this approach should work.
 
-\subsubsection{Alignment}
+\subsubsection{No automatic alignment}
 The laser beam is very narrow. It is very difficult to align the two ends
 to ensure consistent system performance. Both sides must track the other in
 order to adjust their beams accordingly.
