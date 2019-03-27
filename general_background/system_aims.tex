@@ -5,23 +5,35 @@ static, but a sophisticated tracking system is being developed to ensure the
 lasers stay aligned with each other.
 
 \subsection{Current System}
+This section describes the current setup in terms of hardware and software
+that has been implemented.
 
 \subsubsection{Hardware}
 The current system at \ac{KAUST} is built using a Nichia Green laser (NDG7K75T)
 as the transmitter, and a Thorlabs DET10A2 Si Biased Detector for the receiver.
 
-The transmitter is connected via a Bias Tee to the UART TX line of a
-Raspberry Pi.
+The transmitter is connected via a Bias Tee \todo{Why is the Bias Tee used} to
+the \ac{UART} TX line of a Raspberry Pi.
 
 The receiver is connected via an amplifier and comparator, to the RX UART
 line of the Raspberry Pi.
 
-This is duplicated on either side of the system, so that a full duplex
+This is duplicated on both ends of the system, so that a full duplex
 system is realized.
 
 \subsubsection{Software}
-pppd is used to create an OOK link which is bridged to the Ethernet or
-WiFi interfaces.
+pppd is used to create an OOK link, using the \ac{UART} link. One Pi is
+bridged to the Ethernet interface, allowing a connection to the Internet.
+The other Pi (the 'remote') side is bridge to the WiFi interface. A mobile
+phone or tablet is then used to connect via WiFi to the Pi. This thus allows
+the phone to connect to the Internet.
+
+The baud rate of the \ac{UART} is set to 230400.
+
+Bridging is done by utilising ipv4 forwarding and iptables.
+
+dnsmasq is provided at the access point end to automatically give the phone
+an IP address.
 
 \subsection{System Issues}
 The main limitations of the system are as follows:

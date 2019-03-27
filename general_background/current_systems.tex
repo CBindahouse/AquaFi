@@ -1,4 +1,7 @@
 \section{Current Optical Systems}
+This section describes the currently commercially available systems, both
+underwater and terrestrial based, wireless and wired, but all optical based.
+
 \subsection{\ac{UOWC}}
 There currently exists two commercial \ac{UOWC} systems.
 
@@ -31,7 +34,8 @@ implementing an 802.11 compatible stack with a USB interface. They claim
 
 See \url{https://purelifi.com/wp-content/uploads/2019/02/pureLiFi-PL0300-ASICDatasheet.pdf}
 
-The other is Velmenni based in India.
+The other is Velmenni based in India, although they don't have any products
+on the market.
 
 \subsubsection{IrDA / IrLAN}
 The Infrared Data Association provide a specification for gigabit transmissions
@@ -49,6 +53,9 @@ of a very directional laser, however, this may not be an issue.
 If in-band localization is required, a wired interface will not suffice.
 
 \subsubsection{\ac{SFP}}
+
+This is a very common optical fibre interface, mainly used in network
+switches. It can be very fast (10+ Gbit/s).
 
 \url{https://www.snia.org/technology-communities/sff/specifications}
 
@@ -69,14 +76,14 @@ See \url{https://electronics.stackexchange.com/questions/341592/differential-to-
 \url{http://blog.svenbrauch.de/2017/02/19/homemade-10-mbits-laser-optical-ethernet-transceiver/}
 
 \subsubsection{Koruza}
-This is an implementation of \ac{SFP}-based optical transmissions using
-infra-red light.
+This is an implementation of \ac{SFP}-based optical transmission system using
+off-the-shelf \ac{SFP} modules operating at the infra-red light frequencies.
 
 KORUZA - \url{https://github.com/IRNAS/KORUZA}
 
-KAUST already has some of these available to use. They claim up to 1 Gbit/s
-transfer rate. The nice thing about this project is that it is all open source,
-both the hardware and the software.
+\ac{KAUST} already has some of these available to use. They claim up to
+1 Gbit/s transfer rate. The nice thing about this project is that it is
+all open source, both the hardware and the software.
 
 There are currently no available \ac{SFP} transceivers working at the visible
 light (350nm and 420nm).
