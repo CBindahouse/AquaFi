@@ -1,6 +1,7 @@
 \documentclass{article}
 \usepackage[colorlinks]{hyperref}
 \usepackage[printonlyused,withpage]{acronym}
+\usepackage{float}
 \author{Christopher Bainbridge}
 \title{Underwater Optical Wireless Communications - A Background}
 
@@ -8,64 +9,67 @@
 \maketitle
 
 \begin{abstract}
-This document serves as a background and brief summary of \ac{UOWC}. 
+This document serves as a background and brief summary of \ac{UOWC}. It describes information required for the project, a description of current systems (both research and commercial) as well as the developed system at \ac{KAUST}. It then proceeds to suggest solutions to overcome current issues.
 \end{abstract}
 
 \section{Introduction}
 There are three main types of communicating wirelessly underwater - acoustic, RF and optical. Acoustic transmissions are characterized by long range but low data rates. RF transmissions are characterized by high throughput but only at very short distances. Optical transmissions sit halfway between these, allowing high throughput at medium ranges, but at the expense of being affected by the environment of the wireless channel.
 
-\section{Light Propagation in Water}
+\section{General Background}
+This section summarizes a general background in \ac{UOWC} systems.
+
+\subsection{Light Propagation in Water}
 This section lists with short descriptions the issues \ac{UOWC} communications face underwater.
 
-\subsection{Absorption and Scattering}
+\subsubsection{Absorption and Scattering}
 A small fraction of light will be absorbed, and another part scattered, by the water. This becomes more prevalent as the water type degrades, thus propagation is far more challenging.
 
-\subsection{Turbulence}
+\subsubsection{Turbulence}
 The refraction index can vary along the propagation path due to fluctuations in the density, salinity and temperature of the underwater environment. This is known as scintillation and will degrade performance.
 
-\subsection{Pointing and Alignment}
+\subsubsection{Pointing and Alignment}
 Optical beams are very narrow and thus LOS must be maintained for reliable link performance. Tracking is required between nodes to maintain this.
 
-\subsection{Background Noise}
+\subsubsection{Background Noise}
 As the visible spectrum of light is being used, noise from other light sources including the Sun can have an effect. In general, deep ocean is less noisy than harbor side.
 
-\subsection{Multipath interference and dispersion}
+\subsubsection{Multipath interference and dispersion}
 Multipath interference is produced when an optical signal reaches the detector after encountering multiple scattering objects or reflections from other underwater bodies. The signal can be time dispersed thus decreasing the symbol rate due to \ac{ISI}. It is very dependent on the operating conditions, and has been concluded that this effect is only really present in highly turbid environments. Spatial diversity may help to reduce the effects of multipath interference.
 
-\subsection{Physical obstructions}
+\subsubsection{Physical obstructions}
 Anything that might get in the way such as marine animals will cause momentary loss of signal at the receiver. The light will also attract marine animals, especially at depth. Error correction, signal processing techniques and redundancy measures are required to ensure re-transmission of data when lost.
 
 
 
-\section{Water Types}
+\subsection{Water Types}
 The literature classifies water types in \ac{UOWC} into these main classes.
 
-\subsection{Pure Water and Pure Sea Water}
+\subsubsection{Pure Water and Pure Sea Water}
 Pure water is the cleanest water type and has no suspended particulate matter. Pure sea water is pure water but with the addition of salts, although this is assumed to be negligible in visible spectrum, thus making pure sea water and pure water equivalent.
 
-\subsection{Coastal Ocean}
+\subsubsection{Coastal Ocean}
 Coastal ocean displays more severe absorption and scattering due to the increased concentration of dissolved particles.
 
-\subsection{Turbid Harbor}
+\subsubsection{Turbid Harbor}
 This is the most hostile environment for optical communications, with the highest concentration of suspended and dissolved particles leading to increased absorption and scattering.
 
 
 
 
-\section{Configurations of UOWC}
+\subsection{Configurations of UOWC}
 There are 4 types of link configurations with regards to \ac{UOWC}.
 
-\subsection{Point to Point \ac{LOS}}
+\subsubsection{Point to Point \ac{LOS}}
 This is the most typical configuration. Both nodes employ the same transceiver and light sources. Typically the beam angles are narrow, thus requiring precise pointing between nodes.
 
-\subsection{Diffused \ac{LOS}}
+\subsubsection{Diffused \ac{LOS}}
 A point to point link with a large divergence angle allows a signal to be 'broadcast' from one node to multiple remote nodes. Attenuation will be large though due to the increased interaction area with the water. This is useful only if short communication distances and lower data rates are required.
 
-\subsection{Retro-reflector \ac{LOS}}
+\subsubsection{Retro-reflector \ac{LOS}}
 
 Instead of having both ends transmit a signal, the remote node reflects back the received light whilst encoding its response on it. This is ideal for nodes with low power and weight requirements, but the signal will degrade significantly due to backscatter and additional attenuation through the water.
 
-\subsection{\ac{NLOS}}
+\subsubsection{\ac{NLOS}}
 The signal can be 'bounced' off the sea surface, allowing transmissions to propagate further if there are underwater obstacles present. Of course, the light will be reflected in a somewhat random way depending on wind or other turbulence sources, causing signal dispersion and degradation.
 
 
@@ -80,10 +84,22 @@ The receiver should have a wide \ac{FOV}, high gain and provide high \ac{SNR}. T
 
 According to the literature, currently semiconductor photo-sensors (mainly \ac{PIN} photodiodes) are the best fit for \ac{UOWC}.
 
-\subsubsection{\ac{PMT}}
-A vacuum tube which is very sensitive to light. It has high gain, low noise, a high frequency response and a large collection area, but they are also large, have higher power consumption and are quite fragile.
+\subsubsection{\ac{APD}}
+A highly sensitive semiconductor that exploits the photoelectric effect to convert light to electricity.
+
+*** This is from first-sensor.com *** \\
+As in the case of standard diodes, photons generate electron-hole pairs, which are accelerated by the applied external voltage such that further electrons are introduced to the conduction band by means of impact ionization. These secondary electrons can in turn absorb sufficient energy to raise further electrons into the conduction band. A multiplication factor of several hundred can thus be achieved.
+
+Avalanche diodes are usually employed in the case of very low optical signal strengths, but are also used for applications with high modulation frequencies. As of frequencies of approx. 60 MHz, the noise level heightened by the avalanche effect is generally lower than that produced by a conventional diode in combination with external electronic amplification.
 
 \subsubsection{\ac{SPAD}}
+*** This is from Wikipedia ***\\
+A solid-state photodetector in which a photon-generated carrier (via the internal photoelectric effect) can trigger a short-duration but relatively large avalanche current.
+
+The fundamental difference between SPADs and APDs is that SPADs are specifically designed to operate with a reverse-bias voltage well above the breakdown voltage. This kind of operation is also called Geiger-mode in the literature (as opposed to the linear-mode for the case of an APD).
+
+\subsubsection{\ac{PMT}}
+A vacuum tube which is very sensitive to light. It has high gain, low noise, a high frequency response and a large collection area, but they are also large, have higher power consumption and are quite fragile.
 
 \subsection{Modulation Schemes}
 There are two types of modulation schemes that can be used for \ac{UOWC}. The laser can either be directly modulated, also known as Intensity Modulation or a carrier can be introduced after the laser which the signal can be modulated on to, known as Coherent Modulation.
@@ -104,16 +120,18 @@ Error coding schemes can help mitigate the effect of underwater attenuation. Red
 It would be best to use convolutional codes if possible, as they can provide much higher \ac{BER} performance under harsh environments.
 
 \subsubsection{Block Codes}
-These codes add extra bits to each block, known as parity bits. These carry no extra information. They are simple to implement but are not as good as convolutional codes especially in turbid water or multiple scatters.
+These codes add extra bits to each block, known as parity bits. These carry no extra information. They are simple to implement but are not as good as convolutional codes especially in turbid water or multiple scatters. Examples are \ac{RS} codes.
 
 \subsubsection{Convolutional Codes}
-Each code word depends on the message block but also a number of previous message blocks. This requires sequential logic circuits to implement and is thus harder to implement. They do however provide much higher performance.
+Each code word depends on the message block but also a number of previous message blocks. This requires sequential logic circuits to implement and is thus harder to implement. They do however provide much higher performance. Examples are \ac{LDPC} and Turbo codes.
 
 \section{System Aims}
-The aim is to provide a high speed point to point \ac{UOWC} link using lasers. The initial system will be static, but a sophisticated tracking system is being developed to ensure the lasers stay aligned with each other.
+The aim of the system that is being built at \ac{KAUST} is to provide a high speed point to point \ac{UOWC} link using lasers. The initial system will be static, but a sophisticated tracking system is being developed to ensure the lasers stay aligned with each other.
 
 \subsection{Current System}
-The current system is built using a Nichia Green laser (NDG7K75T) as the transmitter, and a Thorlabs DET10A2 Si Biased Detector for the receiver.
+
+\subsubsection{Hardware}
+The current system at \ac{KAUST} is built using a Nichia Green laser (NDG7K75T) as the transmitter, and a Thorlabs DET10A2 Si Biased Detector for the receiver.
 
 The transmitter is connected via a Bias Tee to the UART TX line of a Raspberry Pi.
 
@@ -121,15 +139,14 @@ The receiver is connected via an amplifier and comparator, to the RX UART line o
 
 This is duplicated on either side of the system, so that a full duplex system is realized.
 
+\subsubsection{Software}
 pppd is used to create an OOK link which is bridged to the Ethernet or WiFi interfaces.
-
-Current system performance is limited to 1 Mb/s.
 
 \subsection{System Issues}
 The main limitations of the system are as follows:
 
 \subsubsection{Poor performance}
-The use of the UART is the main limitation in terms of system performance. The baud rate cannot be pushed very high. In terms of interfaces, the Raspberry Pi has SPI, I2C and UART connections. None of these are suitable for a system targeting gigabit performance.
+The current system is limited to a transmission rate of about 1 Mb/s. The use of the UART is the main limitation in terms of system performance. The baud rate cannot be pushed very high. In terms of interfaces, the Raspberry Pi has SPI, I2C and UART connections. None of these are suitable for a system targeting gigabit performance.
 
 A system requires higher speed interfaces, such as gigabit Ethernet, \ac{SFP}, \ac{PCIe} or \ac{USB} 3.0 and above.
 
@@ -152,7 +169,21 @@ If an in-band system is required, this must be factored in to the protocols used
 \section{Research Systems}
 This section describes systems that have been developed in the lab but not commercialized.
 
-\subsection{}
+\begin{table}[H]
+\begin{tabular}{lllllll}
+\textbf{Data Rate} & \textbf{Range} & \textbf{Spectrum} & \textbf{Modulation} & \textbf{RX Type} & \textbf{TX Type} & \textbf{Power} \\
+1 Gbps             & 2m                  & 532nm                    & OOK       & APD                    & Laser                     & 10mW           \\
+2.28 Mbps          & 50m                 & 470nm                    & DPIM                       & APD                    & LED                       & 10W            \\
+1.2 Mbps           & 30m                 & 480nm                    & DPIM                       & APD                    & LED                       & 5W             \\
+2.3 Gbps           & 7m                  & 520nm                    & OOK                        & APD                    & Laser                     & 12mW           \\
+1.45 Gbps          & 4.8m                & 450nm                    & IM/DD OFDM                 & APD                    & Laser                     & 40mW           \\
+4.8 Gbps           & 5.4m                & 450nm                    & 16-QAM-OFDM                & APD                    & Laser                     & 15mW           \\
+1 Mbps             & 3m                  & 532nm                    & BPSK                       & PMT                    & Laser                     & 3W             \\
+5 Mbps             & 3.6m                & 532nm                    & 32-QAM                     & PMT                    & Laser                     &                \\
+1 Mbps             & 3.66m               & 405nm                    & OOK                        & PMT                    & Laser                     & 17mW           \\
+161.35 Mbps        & 2m                  & 450nm                    & 16-QAM OFDM                & PIN                    & LED                       &               
+\end{tabular}
+\end{table}
 
 \section{Current Optical Systems}
 \subsection{\ac{UOWC}}
@@ -184,6 +215,8 @@ Wired interfaces designed for lasers may provide the exact requirements.
 
 However, wired interfaces can really only provide point to point communications. They have no knowledge of multi-point setups. Due to the use of a very directional laser, however, this may not be an issue.
 
+If in-band localization is required, a wired interface will not suffice.
+
 \subsubsection{\ac{SFP}}
 
 \url{https://www.snia.org/technology-communities/sff/specifications}
@@ -205,8 +238,12 @@ This is an implementation of \ac{SFP}-based optical transmissions using infra-re
 
 KORUZA - \url{https://github.com/IRNAS/KORUZA}
 
+KAUST already has some of these available to use. They claim up to 1 Gbit/s transfer rate. The nice thing about this project is that it is all open source, both the hardware and the software.
+
 There are currently no available \ac{SFP} transceivers working at the visible light (350nm and 420nm).
 
+\section{Conclusions}
+This document has summarized a general background behind \ac{UOWC}, the current implementations and drawbacks, and improvements that can be made to the system.
 
 \include{acronyms}
 
