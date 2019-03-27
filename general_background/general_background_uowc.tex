@@ -2,6 +2,8 @@
 \usepackage[colorlinks]{hyperref}
 \usepackage[printonlyused,withpage]{acronym}
 \usepackage{float}
+\usepackage{natbib}
+\usepackage{graphicx}
 \author{Christopher Bainbridge}
 \title{Underwater Optical Wireless Communications - A Background}
 
@@ -99,7 +101,7 @@ A solid-state photodetector in which a photon-generated carrier (via the interna
 The fundamental difference between SPADs and APDs is that SPADs are specifically designed to operate with a reverse-bias voltage well above the breakdown voltage. This kind of operation is also called Geiger-mode in the literature (as opposed to the linear-mode for the case of an APD).
 
 \subsubsection{\ac{PMT}}
-A vacuum tube which is very sensitive to light. It has high gain, low noise, a high frequency response and a large collection area, but they are also large, have higher power consumption and are quite fragile.
+A vacuum tube which is very sensitive to light. They have high gain, low noise, a high frequency response and a large collection area, but they are also large, have higher power consumption and are quite fragile.
 
 \subsection{Modulation Schemes}
 There are two types of modulation schemes that can be used for \ac{UOWC}. The laser can either be directly modulated, also known as Intensity Modulation or a carrier can be introduced after the laser which the signal can be modulated on to, known as Coherent Modulation.
@@ -113,6 +115,14 @@ Techniques for modulation include \ac{OOK}, \ac{PPM} and phase shifting techniqu
 This uses a local oscillator to down convert the optical carrier to baseband or to \ac{RF} intermediate frequency (which is then subsequently demodulated to baseband). The \ac{SNR} can be improved due to the use of the local oscillator. These systems are more complex and higher cost, and use more power than intensity modulated systems.
 
 Phase coherent modulation schemes give better \ac{BER} performance than intensity modulation schemes.
+
+Coherent modulation schemes can be implemented by using an electro-optic modulator.
+
+\begin{figure}[H]
+  \includegraphics[width=0.8\textwidth]{coherent-source.jpg}
+  \caption{Coherent Modulation using electro-optic modulator  \cite{cochenour_mullen_laux_2007}}
+  \label{fig:boat1}
+\end{figure}
 
 \subsection{Channel Coding Schemes}
 Error coding schemes can help mitigate the effect of underwater attenuation. Redundant bits are introduced into the transmitted bit sequence so that the receiver can correct a limited number of errors in the received message. This is known as \ac{FEC}.
@@ -246,5 +256,8 @@ There are currently no available \ac{SFP} transceivers working at the visible li
 This document has summarized a general background behind \ac{UOWC}, the current implementations and drawbacks, and improvements that can be made to the system.
 
 \include{acronyms}
+
+\bibliographystyle{plain}
+\bibliography{research}
 
 \end{document}\grid
