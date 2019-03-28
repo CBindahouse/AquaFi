@@ -4,6 +4,10 @@ speed point to point \ac{UOWC} link using lasers. The initial system will be
 static, but a sophisticated tracking system is being developed to ensure the
 lasers stay aligned with each other.
 
+This will then be developed into a multiple node network allowing optimum
+topologies, both vertical from the surface and horizontal between underwater
+nodes.
+
 \subsection{Current System}
 This section describes the current setup in terms of hardware and software
 that has been implemented.
@@ -36,17 +40,19 @@ dnsmasq is provided at the access point end to automatically assign the phone
 an IP address.
 
 \subsection{System Issues}
-The current systems suffers from a number of limitations.
+The current implemented system suffers from a number of limitations. These are
+poor performance, lack of \ac{AGC} and no automatic alignment between nodes.
 
 \subsubsection{Poor performance}
 The current system is limited to a transmission rate of about 1 Mb/s. The use
-of the UART is the main limitation in terms of system performance. The baud
+of the \ac{UART} is the main limitation in terms of system performance. The baud
 rate cannot be pushed very high. In terms of interfaces, the Raspberry Pi has
-SPI, I2C and UART connections. None of these are suitable for a system
-targeting gigabit performance.
+\ac{SPI}, \ac{I2C} and \ac{UART} connections. None of these are suitable for
+a system targeting gigabit performance.
 
-A system requires higher speed interfaces, such as gigabit Ethernet,
-\ac{SFP}, \ac{PCIe} or \ac{USB} 3.0 and above.
+Higher speed interfaces, such as gigabit Ethernet, \ac{SFP}, \ac{PCIe} or
+\ac{USB} 3.0 and above, are required. A high speed processor that can process
+the data quickly enough is also required.
 
 \subsubsection{Lack of \ac{AGC}}
 Currently the system must be tuned depending on the range by manually
