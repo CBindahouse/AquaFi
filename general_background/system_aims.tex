@@ -32,12 +32,18 @@ The other Pi (the 'remote') side is bridge to the WiFi interface. A mobile
 phone or tablet is then used to connect via WiFi to the Pi. This thus allows
 the phone to connect to the Internet.
 
-The baud rate of the \ac{UART} is set to 230400.
+The bits per second rate of the \ac{UART} is set to 230400. This is pretty fast
+for a \ac{UART} interface (only 460800 and 921600) are higher, but for
+communications this can only reach 230 Kbp/s (using \ac{OOK}).
 
-Bridging is done by utilising ipv4 forwarding and iptables.
+Bridging is done by utilising ipv4 forwarding and iptables. This could also
+be done by creating a bridge interface and linking the two interfaces together.
 
 dnsmasq is provided at the access point end to automatically assign the phone
 an IP address.
+
+systemd is used to start the processes on boot, which is the standard way
+of doing system initialisation currently.
 
 \subsection{System Issues}
 The current implemented system suffers from a number of limitations. These are
