@@ -1,4 +1,4 @@
-\section{System Aims}
+\section{System Requirements}
 The aim of the system that is being built at \ac{KAUST} is to provide a high
 speed point to point \ac{UOWC} link using lasers. The initial system will be
 static, but a sophisticated tracking system is being developed to ensure the
@@ -7,6 +7,10 @@ lasers stay aligned with each other.
 This will then be developed into a multiple node network allowing optimum
 topologies, both vertical from the surface and horizontal between underwater
 nodes.
+
+The system should be low power so that it can run from a reasonable sized
+battery pack attached to the underwater nodes, and should be able to last for
+a few hours.
 
 \subsection{Current System}
 This section describes the current setup in terms of hardware and software
@@ -95,3 +99,10 @@ used as time is required to utilize the lasers for measurements. This must
 be designed in from the outset and thus a system that understands beam forming
 and movable stations must be used. For example, an 802.11-based \ac{MAC} could
 be used, where the protocol allows for scanning time between nodes.
+
+\subsubsection{Low Power}
+The system must be low power in order to function underwater with the limited
+amount of room available to mount batteries. There does not appear to have been
+any testing of the laser in terms of how much power it will draw. Processors
+and systems must also be low power, but able to perform appropriately for
+the data rates required.
