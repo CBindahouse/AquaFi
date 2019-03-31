@@ -69,11 +69,23 @@ This is the most typical configuration. Both nodes employ the same
 transceiver and light sources. Typically the beam angles are narrow, thus
 requiring precise pointing between nodes.
 
+\begin{figure}[H]
+  \includegraphics[width=0.8\textwidth]{los-link.png}
+  \caption{\ac{LOS} link \cite{kaushal_kaddoum}}
+  \label{fig:los-link}
+\end{figure}
+
 \subsubsection{Diffused \ac{LOS}}
 A point to point link with a large divergence angle allows a signal to be
 'broadcast' from one node to multiple remote nodes. Attenuation will be large
 though due to the increased interaction area with the water. This is useful
 only if short communication distances and lower data rates are required.
+
+\begin{figure}[H]
+  \includegraphics[width=0.8\textwidth]{diffused-link.png}
+  \caption{Diffused link \cite{kaushal_kaddoum}}
+  \label{fig:diffused-link}
+\end{figure}
 
 \subsubsection{Retro-reflector \ac{LOS}}
 Instead of having both ends transmit a signal, the remote node reflects back
@@ -81,9 +93,21 @@ the received light whilst encoding its response on it. This is ideal for nodes
 with low power and weight requirements, but the signal will degrade
 significantly due to backscatter and additional attenuation through the water.
 
+\begin{figure}[H]
+  \includegraphics[width=0.8\textwidth]{retro-reflector-link.png}
+  \caption{Retro-reflector link \cite{kaushal_kaddoum}}
+  \label{fig:retro-reflector-link}
+\end{figure}
+
 \subsubsection{\ac{NLOS}}
 The signal can be 'bounced' off the sea surface, allowing transmissions to
 propagate further if there are underwater obstacles present. Of course, the
 light will be reflected in a somewhat random way depending on wind or other
 turbulence sources, causing signal dispersion and degradation.
+
+\begin{figure}[H]
+  \includegraphics[width=0.8\textwidth]{nlos-link.png}
+  \caption{\ac{NLOS} link \cite{kaushal_kaddoum}}
+  \label{fig:nlos-link}
+\end{figure}
 
