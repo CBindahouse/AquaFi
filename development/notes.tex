@@ -1,0 +1,39 @@
+\section{Development - 07/04/2019}
+The aim is firstly to study how the signalling works for the \ac{SFP}
+modules. These are already available inside the KORUZA modules.
+
+Two KORUZA systems have been dismantled and I have removed the following
+components:
+
+\paragraph{\textbf{KORUZA components removed}}
+\begin{itemize}
+\item{TP-Link MC220L}
+\item{KORUZA \ac{SFP} breakout boards}
+\item{KORUZA \ac{SFP} module}
+\end{itemize}
+
+As well as this, I also have the following:
+
+\paragraph{\textbf{Other components used}}
+\begin{itemize}
+\item{Power Supply (used to power TP-Link boxes). Set to 5V, 1.4A maximum
+(as each TP-Link box can draw around 0.6A)}
+\item{Optical Fibre (for testing)}
+\item{\ac{SFP} to Ethernet module (for testing)}
+\item{Raspberry Pi (for testing)}
+\item{Router}
+\item{2 x Ethernet cables (between TP-Link boxes and Raspberry Pi / Router)}
+\item{Oscilloscope to check signals}
+\end{itemize}
+
+The Raspberry Pi is set up as an Ethernet bridge to Wifi as described here:
+\url{https://www.raspberrypi.org/documentation/configuration/wireless/access-point.md}.
+In particular the section "\textbf{Using the Raspberry Pi as an access
+point to share an internet connection (bridge)}".
+
+At first I tried to point the \ac{SFP} modules at each other but the Link was
+not stable. I then tried using an optical fibre but it would not plug in
+properly. Instead of this, I managed to get two \ac{SFP} to Ethernet modules
+and plugged then into each TP-Link box. This was enough to allow the Link
+to be set up.
+
