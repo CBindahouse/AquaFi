@@ -27,7 +27,9 @@ components:
 \paragraph{\textbf{KORUZA components removed}}
 \begin{itemize}
 \item{TP-Link MC220L}
-\item{KORUZA \ac{SFP} breakout boards}
+\item{KORUZA \ac{SFP} breakout boards. See here for circuit diagrams:
+\url{https://github.com/IRNAS/KORUZA/blob/master/electronics/KORUZA_SFPextension_plug/SFPextension.PDF}
+and \url{https://github.com/IRNAS/KORUZA/blob/master/electronics/KORUZA_SFPextension_socket/SFPextensionSplit.PDF}}
 \item{KORUZA \ac{SFP} module}
 \end{itemize}
 
@@ -62,3 +64,13 @@ and plugged then into each TP-Link box. This was enough to allow the Link
 to be set up.
 
 If the infra-red \ac{SFP} modules are aligned properly, the link is stable.
+I am seeing some packet loss though this may be because the link isn't aligned
+as perfectly as it could be (it's just on the table with no proper optical
+alignment).
+
+Next steps are to measure the signals (TX / RX differential ones) that go over
+the SATA connector to the external \ac{SFP} cage. From this we can then
+determine that the \ac{SFP} module can be pretty basic and we can just attach
+our laser / photodiode. We also need to check what is in the \ac{I2C} chip
+memory and copy it out so that we can 'pretend' to be the same module when
+we use the breakout board.
