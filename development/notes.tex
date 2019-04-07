@@ -5,6 +5,9 @@ to break out an \ac{SFP} module using a breakout board so that the laser
 and photodiode can be attached. This should then be able to drive the system
 much higher and provide a much faster link (gigabit).
 
+The \ac{SFP} specification can be found here:
+\url{http://www.kt.agh.edu.pl/~lason/SFP/TRX100007/SCP6Gx8c.pdf}
+
 \paragraph{\textbf{Components ordered}}
 \begin{itemize}
 \item{3 x \ac{SFP} to SMA Adapter
@@ -71,6 +74,53 @@ alignment).
 Next steps are to measure the signals (TX / RX differential ones) that go over
 the SATA connector to the external \ac{SFP} cage. From this we can then
 determine that the \ac{SFP} module can be pretty basic and we can just attach
-our laser / photodiode. We also need to check what is in the \ac{I2C} chip
+our laser / photodiode. We also need to check what is in the \ac{I2C} EEPROM
 memory and copy it out so that we can 'pretend' to be the same module when
 we use the breakout board.
+
+I used the Raspberry Pi that comes with Koruza as it already has the breakout
+to the I2C device. This is what is in the I2C EEPROM memory, using the
+following command:
+
+	i2cdump 1 0x50 i
+
+     0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f    0123456789abcdef
+00: 03 04 00 00 00 00 08 00 00 00 00 01 0d 00 00 00    ??....?....??...
+10: 00 00 64 00 43 49 53 43 4f 2d 41 56 41 47 4f 20    ..d.CISCO-AVAGO 
+20: 20 20 20 20 01 00 17 6a 41 42 43 55 2d 35 37 31        ?.?jABCU-571
+30: 30 52 5a 2d 43 53 32 20 20 20 20 20 41 0c c1 13    0RZ-CS2     A???
+40: 00 10 00 00 41 47 4d 31 32 34 35 32 32 56 35 20    .?..AGM124522V5 
+50: 20 20 20 20 30 38 31 31 31 30 20 20 00 00 00 ab        081110  ...?
+60: 00 00 06 11 36 c9 64 cf 43 18 00 cc 0f 1e 82 f0    ..??6?d?C?.?????
+70: 80 ec 6f 00 00 00 00 00 00 00 00 00 4a af 0d b2    ??o.........J???
+80: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff    ................
+90: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff    ................
+a0: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff    ................
+b0: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff    ................
+c0: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff    ................
+d0: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff    ................
+e0: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff    ................
+f0: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff    ................
+
+	i2cdump 1 0x56 i
+
+     0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f    0123456789abcdef
+00: 01 40 01 6d 01 41 0c c1 0c 01 c0 01 00 0f 20 01    ?@?m?A??????.? ?
+10: 4c ff 0e 00 78 00 00 00 00 00 00 00 00 00 f0 00    L.?.x.........?.
+20: 01 40 01 6d 01 41 0c c1 0c 01 c0 01 00 0d 20 01    ?@?m?A??????.? ?
+30: 4c ff 0e 00 78 00 00 00 00 00 00 00 00 00 f0 00    L.?.x.........?.
+40: 01 40 01 6d 01 41 0c c1 0c 01 c0 01 00 0d 20 01    ?@?m?A??????.? ?
+50: 4c ff 0e 00 78 00 00 00 00 00 00 00 00 00 f0 00    L.?.x.........?.
+60: 01 40 01 6d 01 41 0c c1 0c 01 c0 01 00 0d 20 01    ?@?m?A??????.? ?
+70: 4c ff 0e 00 78 00 00 00 00 00 00 00 00 00 f0 00    L.?.x.........?.
+80: 01 40 01 6d 01 41 0c c1 0c 01 c0 01 00 0d 20 01    ?@?m?A??????.? ?
+90: 4c ff 0e 00 78 00 00 00 00 00 00 00 00 00 f0 00    L.?.x.........?.
+a0: 01 40 01 6d 01 41 0c c1 0c 01 c0 01 00 0d 20 01    ?@?m?A??????.? ?
+b0: 4c ff 0e 00 78 00 00 00 00 00 00 00 00 00 f0 00    L.?.x.........?.
+c0: 01 40 01 6d 01 41 0c c1 0c 01 c0 01 00 0d 20 01    ?@?m?A??????.? ?
+d0: 4c ff 0e 00 78 00 00 00 00 00 00 00 00 00 f0 00    L.?.x.........?.
+e0: 01 40 01 6d 01 41 0c c1 0c 01 c0 01 00 0d 20 01    ?@?m?A??????.? ?
+f0: 4c ff 0e 00 78 00 00 00 00 00 00 00 00 00 f0 00    L.?.x.........?.
+
+
+We need to replicate this.
