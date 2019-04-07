@@ -1,6 +1,25 @@
 \section{Development - 31/03/2019}
+I have decided to pursue the 'Ethernet' approach, which is to use an \ac{SFP}
+module, the same as all the other \ac{FSO} approaches do. The idea will be
+to break out an \ac{SFP} module using a breakout board so that the laser
+and photodiode can be attached. This should then be able to drive the system
+much higher and provide a much faster link (gigabit).
+
+\paragraph{\textbf{Components ordered}}
+\begin{itemize}
+\item{3 x \ac{SFP} to SMA Adapter
+(\url{https://shop.trenz-electronic.de/en/TE0422-02-SFP-2-SMA-Adapter?path=Trenz_Electronic/Accessories/SFP/TE0422/REV02})}
+\item{4 x SMA cables
+(\url{https://www.thorlabs.com/thorproduct.cfm?partnumber=CA2912})}
+\item{2 x Gigabit ethernet media converters - for the power supplies mainly.
+(\url{https://www.amazon.com/TP-Link-Ethernet-Converter-Supporting-MC220L/dp/B003CFATL0})}
+\end{itemize}
+
+\section{Development - 03/04/2019}
 The aim is firstly to study how the signalling works for the \ac{SFP}
-modules. These are already available inside the KORUZA modules.
+modules. These are already available inside the KORUZA modules. The modules
+were taken from the control laboratory, from Ibrahima
+(\href{mailto:ibrahima.ndoye@kaust.edu.sa}{ibrahima.ndoye@kaust.edu.sa}).
 
 Two KORUZA systems have been dismantled and I have removed the following
 components:
