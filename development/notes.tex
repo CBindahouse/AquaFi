@@ -55,10 +55,12 @@ The Raspberry Pi is set up as an Ethernet bridge to Wifi as described here:
 In particular the section "\textbf{Using the Raspberry Pi as an access
 point to share an internet connection (bridge)}".
 
-Note I also have to do the following after following the instructions: \\
-	sudo systemctl unmask hostapd \\
-	sudo systemctl enable hostapd \\
-	sudo systemctl start hostapd \\
+Note I also have to do the following after following the instructions
+\begin{lstlisting}
+	sudo systemctl unmask hostapd
+	sudo systemctl enable hostapd
+	sudo systemctl start hostapd
+\end{lstlisting}
 
 \section{Development - 07/04/2019}
 Note that the Raspberry Pi WiFi does not seem to be stable. Was told by previous
@@ -87,6 +89,7 @@ I used the Raspberry Pi that comes with Koruza as it already has the breakout
 to the I2C device. This is what is in the I2C EEPROM memory, using the
 following command:
 
+\begin{lstlisting}
 	i2cdump 1 0x50 i
 
      0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f    0123456789abcdef
@@ -126,6 +129,7 @@ c0: 01 40 01 6d 01 41 0c c1 0c 01 c0 01 00 0d 20 01    ?@?m?A??????.? ?
 d0: 4c ff 0e 00 78 00 00 00 00 00 00 00 00 00 f0 00    L.?.x.........?.
 e0: 01 40 01 6d 01 41 0c c1 0c 01 c0 01 00 0d 20 01    ?@?m?A??????.? ?
 f0: 4c ff 0e 00 78 00 00 00 00 00 00 00 00 00 f0 00    L.?.x.........?.
+\end{lstlisting}
 
 We need to replicate this. Note the EEPROM specification is from section 8.1
 in \url{http://www.kt.agh.edu.pl/~lason/SFP/TRX100007/SCP6Gx8c.pdf}.
