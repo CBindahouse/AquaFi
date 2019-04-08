@@ -124,3 +124,11 @@ f0: 4c ff 0e 00 78 00 00 00 00 00 00 00 00 00 f0 00    L.?.x.........?.
 
 We need to replicate this. Note the EEPROM specification is from section 8.1
 in \url{http://www.kt.agh.edu.pl/~lason/SFP/TRX100007/SCP6Gx8c.pdf}.
+
+\section{Development - 08/04/2018}
+I have managed to capture some sort of signal on the differential outputs
+of the SATA connection which provides the signalling to the \ac{SFP} connector.
+Unfortunately the signal isn't very clean so I'm trying to make that better.
+
+This is a useful resource about the timings:
+\url{https://electronics.stackexchange.com/questions/328412/how-gigabit-ethernet-is-achieved-in-fiber-optics}
