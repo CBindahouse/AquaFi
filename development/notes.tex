@@ -141,3 +141,13 @@ Unfortunately the signal isn't very clean so I'm trying to make that better.
 
 This is a useful resource about the timings:
 \url{https://electronics.stackexchange.com/questions/328412/how-gigabit-ethernet-is-achieved-in-fiber-optics}
+
+\subsection{Finding out more information about differential to single ended
+conversion}
+I am trying to figure out how to take the differential signals that are ouput
+from the SFP connection and make them into single ended signals.
+They do it here: \url{https://osmocom.org/projects/misc-hardware/wiki/Sfp-experimenter}
+Also here: \url{https://github.com/aewallin/SFP2SMA_2018.03}. Looks like this
+one is faster. It uses Mini-Circuits ADT2-1T transformers (see \url{https://www.minicircuits.com/pdfs/ADT2-1T.pdf}).
+Note we're only using a 125Mhz clock (as 1 Gbps using 8b/10b encoding).
+Maybe we should get some of these? \url{https://www.analog.com/media/en/reference-design-documentation/reference-designs/5693022520349015544867851905SFP_RDK_pra.pdf}
