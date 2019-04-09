@@ -69,7 +69,11 @@ properly. Nevertheless we're going to throw it away anyway so doesn't matter.
 
 At first I tried to point the \ac{SFP} modules at each other but the Link was
 not stable. I then tried using an optical fibre but it would not plug in
-properly. Instead of this, I managed to get two \ac{SFP} to Ethernet modules
+properly. \textbf{Update 09/04/2019: this is indeed because the laser is
+missing a part. It should have a plastic header on the front of it; I assume
+this was removed (there looks to be burn marks on the front) for the
+KORUZA system.}
+Instead of this, I managed to get two \ac{SFP} to Ethernet modules
 and plugged then into each TP-Link box. This was enough to allow the Link
 to be set up.
 
@@ -193,3 +197,16 @@ Looks like the laser is a \ac{BOSA}. Here's a typical diagram of the pins:
   \caption{Generic \ac{BOSA} pinout diagram}
   \label{fig:bosa}
 \end{figure}
+
+I wonder if we can get a \ac{BOSA} setup? Otherwise we'll need separate TOSA
+and ROSA setups.
+TOSA (want style A or B.. or C?!?) - \url{https://www.thorlabs.com/NewGroupPage9.cfm?ObjectGroup_ID=7}
+L520P50 (520nm) - \url{https://www.thorlabs.com/drawings/f2b312cc2a813cb5-1692403B-ADC8-5630-D864A5F4247EC365/L520P50-SpecSheet.pdf}.
+
+(Note we want to use either 450nm or 520nm lasers)
+Current OSRAM laser does not provide a monitoring photodiode (not sure if
+this is necessary).
+
+\subsubsection{Heatsinks}
+A quick note about heatsinks - the lasers need good ones! Otherwise they don't
+transmit at the required frequency.
