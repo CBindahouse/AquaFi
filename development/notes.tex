@@ -151,3 +151,21 @@ Also here: \url{https://github.com/aewallin/SFP2SMA_2018.03}. Looks like this
 one is faster. It uses Mini-Circuits ADT2-1T transformers (see \url{https://www.minicircuits.com/pdfs/ADT2-1T.pdf}).
 Note we're only using a 125Mhz clock (as 1 Gbps using 8b/10b encoding).
 Maybe we should get some of these? \url{https://www.analog.com/media/en/reference-design-documentation/reference-designs/5693022520349015544867851905SFP_RDK_pra.pdf}
+
+\section{Development - 09/04/2019}
+
+Something interesting here (with relation to the previous Analog Devices
+reference design)
+\url{https://www.arrow.com/en/reference-designs/laser-driver-for-gb-ethernet-switch/6ce61f01a20a56fa532aa09927c84d22}
+
+Current system is using the following:
+\begin{itemize}
+\item{Thorlabs DET10A2 Si Biased Detector}
+\item{Osram 1.6 Watt Blue Laser Diode in TO56 Package}
+\end{itemize}
+
+\subsection{\ac{AGC}}
+We really need to think about \ac{AGC} and how it's supposed to function. It
+seems that in typical \ac{SFP} connections they control both the TX side
+by utilising a photodiode in the transmitter to adjust the power; in the RX
+side the RX power is adjusted too, probably by measurements.
