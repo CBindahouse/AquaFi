@@ -157,6 +157,9 @@ Maybe we should get some of these? \url{https://www.analog.com/media/en/referenc
 Something interesting here (with relation to the previous Analog Devices
 reference design)
 \url{https://www.arrow.com/en/reference-designs/laser-driver-for-gb-ethernet-switch/6ce61f01a20a56fa532aa09927c84d22}
+Another one here (this is the 10G one): \url{http://www.ti.com/tool/TIDA-00088}
+And more: \url{https://www.analog.com/en/products/landing-pages/001/sfp-chipset-and-reference-design.html}.
+I contacted Analog Devices to ask if we can get the reference design from them.
 
 Current system is using the following:
 \begin{itemize}
@@ -169,3 +172,24 @@ We really need to think about \ac{AGC} and how it's supposed to function. It
 seems that in typical \ac{SFP} connections they control both the TX side
 by utilising a photodiode in the transmitter to adjust the power; in the RX
 side the RX power is adjusted too, probably by measurements.
+Looks like we may need some sort of microcontroller to adjust the \ac{AGC}; this
+is how it's done in other systems.
+
+\subsection{What's in the IRNAS SFP connector}
+I took apart the IRNAS SFP connector. The main chip on it is this:
+\url{https://www.datasheetarchive.com/pdf/download.php?id=7a1d8924e962602762f27f57b62de6accd74e5&type=P&term=M0201x}
+The suggested single ended to differential converter is M0201x. Here's an
+example
+\url{https://www.datasheetarchive.com/pdf/download.php?id=1450622d93878decd445ca73f09843c5b2a176&type=P&term=M02011%252F13%252F00}
+
+It looks like we need a laser driver for the TX (\url{https://www.laserdiodecontrol.com/laser-diode-driver-basics-and-fundamentals#what-is-a-laser-diode-driver-link},
+another one \url{https://www.teamwavelength.com/laser-diode-driver-basics/})
+and for the RX a "Transimpedance Amplifier with AGC".
+
+Looks like the laser is a \ac{BOSA}. Here's a typical diagram of the pins:
+
+\begin{figure}[H]
+  \includegraphics[width=0.8\textwidth]{bosa.png}
+  \caption{Generic \ac{BOSA} pinout diagram}
+  \label{fig:bosa}
+\end{figure}
