@@ -214,3 +214,15 @@ transmit at the required frequency.
 \section{Development - 10/04/2019}
 Asked and received a specification for the KORUZA \ac{SFP} module that they
 have (GSB-1235S-L4ID). See the specification in this folder.
+
+Ok so we can use either \url{https://cdn.macom.com/datasheets/M02016.pdf} or
+\url{https://cdn.macom.com/datasheets/M02015.pdf}, depending on which one
+is the better part, as the Transimpedance Amplifier.
+
+Here's a fun paper about using a transimpedance amplifier for visible light communication \cite{fuada_putra_aska_adiono_2016}
+
+\subsection{Duplex}
+Omar mentioned a good point - is a 1 gigabit SFP connection full duplex or half
+duplex. The answer is that it's full duplex (they use different colour lights
+for each end). So we'll need to ensure we either do the same, or we space our
+lasers / receivers far enough apart that they won't interfere with each other.
