@@ -274,3 +274,55 @@ Completed training modules
 \item{Liquid Nitrogen Training}
 \item{Compressed Gas Cylinder}
 \end{itemize}
+
+I stumbled across the RONJA \url{https://en.wikipedia.org/wiki/RONJA} page
+which led me to \url{http://electric2.ee.psu.ac.th/~ton/FSO_Ronja_TENCON2006_Final2.pdf}.
+This is interesting because they're not using a 'traditional' transimpedance
+preamplifier design. What I don't really understand is why not, and is this
+suitable for our application or is the bandwidth too small?
+
+There's some more information here:
+\url{https://en.wikipedia.org/wiki/Visible_light_communication}
+
+The Wikipedia page on TIA is quite useful:
+\url{https://en.wikipedia.org/wiki/Transimpedance_amplifier}
+(On that note, why is the comparator there? Why not just plug the photodetector
+into the negative side of the op-amp...)
+
+I have sent this to Corelabs:
+
+Hi,
+
+I'm looking for some help / advice on integrating a photodiode with an existing laser driver / amplifier.
+
+The setup is thus - I want to integrate a visible light laser and photodiode that detects visible light with an existing SFP module, which currently has an infra-red transmitter / receiver in a BOSA form attached to it.
+
+The SFP module has this device on board:
+
+\url{https://www.datasheetarchive.com/pdf/download.php?id=7a1d8924e962602762f27f57b62de6accd74e5&type=P&term=M0201x}
+
+The visible light laser I think is quite simple to integrate (should be just a plug and play as long as I choose the right component).
+
+The photodiode, however, requires a transimpedance amplifier, according to the diagram on the first page (labelled M0201x). I believe this is the right part:
+
+\url{https://cdn.macom.com/datasheets/M02015.pdf}
+
+As can be seen from section 4.3 (page 22) the amplifier is supposed to be soldered directly to the TO-Can. I believe something like this:
+
+\url{http://www.rmtltd.ru/products/submounts/to46/}
+
+The photodiode would normally be mounted inside the TO-Can package, however we'll need to attach it to the M02015. I was aiming to use a photodiode such as:
+
+\url{www.thorlabs.com/_sd.cfm?fileName=0637-S01.pdf&partNumber=FDS100}
+
+and then soldering the output pins to the input PINK and PINA pins.
+
+Do you think this will work? I'm mostly concerned about not having the photodiode and transimpedance amplifier attached to the same part. I'm also unsure if I have selected the right combination of photodiode / transimpedance amplifier, as I'm struggling to understand whether they will interface correctly (ie. the voltages are the same etc).
+
+I'd really appreciate any advice and whether you think this is possible / the right approach.
+
+I have attached photos of the SFP module with the BOSA part in the foreground (this is the part I want to change).
+
+Many thanks,
+Chris Bainbridge
+
