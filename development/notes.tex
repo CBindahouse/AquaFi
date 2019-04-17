@@ -326,3 +326,41 @@ I have attached photos of the SFP module with the BOSA part in the foreground (t
 Many thanks,
 Chris Bainbridge
 
+\section{Development - 16/04/2019}
+Ambient light sensors - what are these? Can we get one that will do what we
+want? Something like \url{http://www.ti.com/product/OPT301}
+
+OK so they do something like what I'm trying to do here:
+\url{https://www.osapublishing.org/DirectPDFAccess/804494B1-E820-A80B-F9AF4E743C98EDE5_303458/oe-22-22-27203.pdf?da=1&id=303458&seq=0&mobile=no}
+
+In particular the following extraction:
+
+An optical short-pass filter with a cutoff wavelength of 500 nm and an optical
+convex lens (5 cm focal length) was mounted in front of the PIN photodiode
+(HAMAMATSU  S10784). An trans-impedance amplifier (TIA) MAX3665 (8KOhm
+gain, 470MHz bandwidth) was used to amplify electrical current signal
+of photodiode (PD), then a differential amplifier (ADA4937-1) circuit
+with post-equalization boosted the signal level up to the operation range of
+the error bit-error-ratio (BER) tester (Agilent  81250). The receiver also
+consists a wideband limiting amplifier (MAX3768) with a gain of 55 dB,
+which could provide low voltage positive emitter-coupled logic (LVPECL) output
+interface.
+
+HOW is the TIA integrated though?!?
+
+OK, looks like we could use a surface mount PIN photodiode. E.g.
+\url{https://www.vishay.com/docs/81643/temd5080.pdf}
+
+\section{Development - 17/04/2019}
+Popped down to the Electronics lab (in the Core Labs area). Had a chat with
+them about mounting a transimpedance amplifier. They said that wire bonding
+is something they can do (with help from the nanofabrication people), which
+means we can mount the amplifier.
+They say they can do normal, reflow and wire bonding so we should be good to
+order some parts (just need to check dimensions etc).
+
+Photoreceiver. This is possibly what we want. I've sent some emails to quite
+a lot of companies - we'll see what they come back with!
+
+Ooh ooh I think I've found what we want:
+\url{http://osioptoelectronics.com/standard-products/silicon-photodiodes/photodiode-amplifier-hybrids/1-25gbps-photodiode-amplifier-hybrids.aspx}
