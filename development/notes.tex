@@ -461,3 +461,16 @@ and replacing it with some wires). We can then wire them
 up to the laser / photodiode easily. Hopefully this should
 be done in the next day or two and I can try it out with
 the laser in the Photonics laboratory.
+
+\section{Development - 02/04/2019}
+I received the dismantled SFP connectors yesterday afternoon, and
+have spend the rest of the afternoon and this morning attempting
+to bring them up (without the laser / receiver attached). This
+is proving to be harder than I originally thought. It seems
+that the voltages have to be just right...
+
+Some good references include this one, which tells you how to decode
+the hexdump you get from reading the EEPROM via i2cdump.
+\url{https://www.finisar.com/sites/default/files/resources/an-2030_ddmi_for_sfp_rev_e2-20140404_updated.pdf}
+
+I'm using a command like this: i2cdump -y 1 0x51
