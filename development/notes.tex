@@ -462,7 +462,7 @@ up to the laser / photodiode easily. Hopefully this should
 be done in the next day or two and I can try it out with
 the laser in the Photonics laboratory.
 
-\section{Development - 02/04/2019}
+\section{Development - 02/05/2019}
 I received the dismantled SFP connectors yesterday afternoon, and
 have spend the rest of the afternoon and this morning attempting
 to bring them up (without the laser / receiver attached). This
@@ -474,3 +474,15 @@ the hexdump you get from reading the EEPROM via i2cdump.
 \url{https://www.finisar.com/sites/default/files/resources/an-2030_ddmi_for_sfp_rev_e2-20140404_updated.pdf}
 
 I'm using a command like this: i2cdump -y 1 0x51
+
+\section{Development - 05/05/2019}
+Noticed that whilst one of the connectors was reporting that it had started,
+the other one was reporting completely different error flags. I then noticed
+that the calibration data and alarm and warning thresholds were set to 0 on
+one module, and had lots of values on the other one. So I've changed them
+using i2cset and now they're reporting the same error values (which is good).
+Now to debug why that is and hopefully fix it so they don't report errors (or
+figure out why they are and adapt appropriately). I think the best thing to do
+is to learn the \ac{SFP} EEPROM information.
+
+Note to remember - there is a checksum of bytes 0 to 94 at byte 95!
