@@ -486,3 +486,20 @@ figure out why they are and adapt appropriately). I think the best thing to do
 is to learn the \ac{SFP} EEPROM information.
 
 Note to remember - there is a checksum of bytes 0 to 94 at byte 95!
+
+\section{Development - 06/05/2019}
+I've figured out that I had the photodiode the wrong way round (whoops). I've
+also spent some time figuring out the EEPROM information and adjusting it so it
+doesn't go into the fail state (at least, it doesn't set any alarms off).
+However, I'm still getting a 'fail' state occur, with the LED turning on for
+a brief moment before turning off again. This can be seen in the following
+picture.
+
+\begin{figure}[H]
+  \includegraphics[width=0.8\textwidth]{sfp_startup_fail.jpg}
+  \caption{\ac{SFP} startup failure}
+  \label{fig:sfp_startup_fail}
+\end{figure}
+
+The timing gets smaller and the voltage on the second channel gets slightly
+higher if I put a resistor in series with the LED.
