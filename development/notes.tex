@@ -503,3 +503,23 @@ picture.
 
 The timing gets smaller and the voltage on the second channel gets slightly
 higher if I put a resistor in series with the LED.
+
+\section{Development - 09/05/2019}
+I've spent a few days in the Photonics lab trying to get things working. I was
+hoping that if I changed to a laser rather than an LED it would help but it
+doesn't seem to have.
+
+I soldered some jumper wires onto the original BOSA module and I obtained
+this screenshot from startup of the device:
+
+\begin{figure}[H]
+  \includegraphics[width=0.8\textwidth]{sfp_startup_pass.jpg}
+  \caption{\ac{SFP} startup pass}
+  \label{fig:sfp_startup_pass}
+\end{figure}
+
+The interesting observation is that Yellow voltage (OUT-) is not very
+different to the voltage of the OUT+ (not shown but it's the same
+voltage as the purple line until it drops) yet a reasonably large
+voltage and current is still produced on the output of the monitoring
+photodiode.
