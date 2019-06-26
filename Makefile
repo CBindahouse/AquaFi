@@ -1,6 +1,6 @@
 TOPTARGETS := all clean
 
-SUBDIRS := general_background development
+SUBDIRS := general_background development topologies
 
 $(TOPTARGETS): $(SUBDIRS)
 $(SUBDIRS):
