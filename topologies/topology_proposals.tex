@@ -10,9 +10,12 @@ classes, based not just on the number of nodes but also their applications.
 \item{Daisy Chain}
 \end{itemize}
 
+\subsection{Topologies}
+
 \subsubsection{Point to Point}
 A Point to Point topology is only suitable for a single underwater node and a
-node operating on the surface, or above.
+node operating on the surface, or above. The range and data rate is limited
+to that of one link.
 
 \subsubsection{Star Topology}
 A star topology is suitable for the following applications:
@@ -23,6 +26,8 @@ we can only consider these for star topologies}
 anchored to the bottom of the seabed and connected to the surface via a single
 vertical transceiver}
 \end{itemize}
+
+The range and data rate of a star network is limited to the range of one link.
 
 \subsubsection{Daisy Chain / Mesh Topology}
 Daisy chain / mesh topology is suitable for the following applications
@@ -35,14 +40,14 @@ but less routing complexity, with no redudancy.}
 in mid water at different heights.}
 \end{itemize}
 
+The range of a mesh network can be considered as much longer than a point to
+point or star network, however the range is not unlimited as these networks
+are battery powered and cannot last indefinitely.
+
 \subsubsection{Hybrid Topology}
 A hybrid topology is suitable for the following applications
 \begin{itemize}
 \item{Three Dimensional Architctecture - A layered approach such as an inverted tree would be
 suitable for a mutli-level network as described in
 \cite{tier_based_underwater_routing}.}
-
 \end{itemize}
-
-
-
