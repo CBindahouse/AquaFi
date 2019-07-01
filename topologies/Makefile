@@ -24,7 +24,7 @@ all: topologies.pdf
 # -interaction=nonstopmode keeps the pdflatex backend from stopping at a
 # missing file reference and interactively asking you for an alternative.
 
-topologies.pdf: *.tex
+topologies.pdf: *.tex *.bib
 	latexmk -pdf -pdflatex="pdflatex -interaction=nonstopmode" -use-make topologies.tex
 
 clean:

@@ -24,7 +24,7 @@ all: development.pdf
 # -interaction=nonstopmode keeps the pdflatex backend from stopping at a
 # missing file reference and interactively asking you for an alternative.
 
-development.pdf: *.tex
+development.pdf: *.tex *.bib
 	latexmk -pdf -pdflatex="pdflatex -interaction=nonstopmode" -use-make development.tex
 
 clean:
