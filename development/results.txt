@@ -1,0 +1,301 @@
+# 10 second flood ping
+
+pi@raspberrypi:~ $ sudo ping -f 192.168.1.1
+PING 192.168.1.1 (192.168.1.1) 56(84) bytes of data.
+.^C
+--- 192.168.1.1 ping statistics ---
+11140 packets transmitted, 11139 received, 0% packet loss, time 10290ms
+rtt min/avg/max/mdev = 0.798/0.863/4.333/0.074 ms, ipg/ewma 0.923/0.851 ms
+
+# ping times
+pi@raspberrypi:~ $ ping 192.168.1.1
+PING 192.168.1.1 (192.168.1.1) 56(84) bytes of data.
+64 bytes from 192.168.1.1: icmp_seq=1 ttl=64 time=1.82 ms
+64 bytes from 192.168.1.1: icmp_seq=2 ttl=64 time=0.957 ms
+64 bytes from 192.168.1.1: icmp_seq=3 ttl=64 time=0.991 ms
+64 bytes from 192.168.1.1: icmp_seq=4 ttl=64 time=1.00 ms
+64 bytes from 192.168.1.1: icmp_seq=5 ttl=64 time=1.03 ms
+64 bytes from 192.168.1.1: icmp_seq=6 ttl=64 time=1.04 ms
+64 bytes from 192.168.1.1: icmp_seq=7 ttl=64 time=1.03 ms
+64 bytes from 192.168.1.1: icmp_seq=8 ttl=64 time=1.00 ms
+64 bytes from 192.168.1.1: icmp_seq=9 ttl=64 time=1.04 ms
+64 bytes from 192.168.1.1: icmp_seq=10 ttl=64 time=1.02 ms
+^C
+--- 192.168.1.1 ping statistics ---
+10 packets transmitted, 10 received, 0% packet loss, time 9011ms
+rtt min/avg/max/mdev = 0.957/1.095/1.820/0.246 ms
+
+# iperf TCP test
+
+pi@raspberrypi:~ $ iperf3 -c 192.168.1.1
+Connecting to host 192.168.1.1, port 5201
+[  4] local 192.168.1.129 port 33478 connected to 192.168.1.1 port 5201
+[ ID] Interval           Transfer     Bandwidth       Retr  Cwnd
+[  4]   0.00-1.00   sec   191 KBytes  1.56 Mbits/sec    0   18.4 KBytes       
+[  4]   1.00-2.00   sec  93.3 KBytes   765 Kbits/sec    0   18.4 KBytes       
+[  4]   2.00-3.00   sec  96.2 KBytes   788 Kbits/sec    0   18.4 KBytes       
+[  4]   3.00-4.00   sec  96.2 KBytes   788 Kbits/sec    0   18.4 KBytes       
+[  4]   4.00-5.00   sec   163 KBytes  1.33 Mbits/sec    0   31.1 KBytes       
+[  4]   5.00-6.00   sec  86.3 KBytes   707 Kbits/sec    0   31.1 KBytes       
+[  4]   6.00-7.00   sec  86.3 KBytes   707 Kbits/sec    0   31.1 KBytes       
+[  4]   7.00-8.00   sec  83.4 KBytes   683 Kbits/sec    0   31.1 KBytes       
+[  4]   8.00-9.00   sec  80.6 KBytes   660 Kbits/sec    0   31.1 KBytes       
+[  4]   9.00-10.00  sec   147 KBytes  1.20 Mbits/sec    0   31.1 KBytes       
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[ ID] Interval           Transfer     Bandwidth       Retr
+[  4]   0.00-10.00  sec  1.10 MBytes   920 Kbits/sec    0             sender
+[  4]   0.00-10.00  sec   988 KBytes   810 Kbits/sec                  receiver
+
+iperf Done.
+
+Accepted connection from 192.168.1.129, port 33476
+[  5] local 192.168.1.1 port 5201 connected to 192.168.1.129 port 33478
+[ ID] Interval           Transfer     Bandwidth
+[  5]   0.00-1.00   sec   109 KBytes   892 Kbits/sec                  
+[  5]   1.00-2.00   sec  94.7 KBytes   776 Kbits/sec                  
+[  5]   2.00-3.00   sec  96.2 KBytes   788 Kbits/sec                  
+[  5]   3.00-4.00   sec  94.7 KBytes   776 Kbits/sec                  
+[  5]   4.00-5.00   sec   100 KBytes   822 Kbits/sec                  
+[  5]   5.00-6.00   sec  94.7 KBytes   776 Kbits/sec                  
+[  5]   6.00-7.00   sec  96.2 KBytes   788 Kbits/sec                  
+[  5]   7.00-8.00   sec  94.7 KBytes   776 Kbits/sec                  
+[  5]   8.00-9.00   sec  94.7 KBytes   776 Kbits/sec                  
+[  5]   9.00-10.00  sec  96.2 KBytes   788 Kbits/sec                  
+[  5]  10.00-10.18  sec  17.0 KBytes   789 Kbits/sec                  
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[ ID] Interval           Transfer     Bandwidth
+[  5]   0.00-10.18  sec  0.00 Bytes  0.00 bits/sec                  sender
+[  5]   0.00-10.18  sec   988 KBytes   796 Kbits/sec                  receiver
+
+# UDP iperf
+
+pi@raspberrypi:~ $ iperf3 -c 192.168.1.1 -u -b 17M
+Connecting to host 192.168.1.1, port 5201
+[  4] local 192.168.1.129 port 51439 connected to 192.168.1.1 port 5201
+[ ID] Interval           Transfer     Bandwidth       Total Datagrams
+[  4]   0.00-1.00   sec  1.87 MBytes  15.7 Mbits/sec  239  
+[  4]   1.00-2.00   sec  2.02 MBytes  17.0 Mbits/sec  259  
+[  4]   2.00-3.00   sec  2.03 MBytes  17.0 Mbits/sec  260  
+[  4]   3.00-4.00   sec  2.02 MBytes  17.0 Mbits/sec  259  
+[  4]   4.00-5.00   sec  2.03 MBytes  17.0 Mbits/sec  260  
+[  4]   5.00-6.00   sec  2.02 MBytes  17.0 Mbits/sec  259  
+[  4]   6.00-7.00   sec  2.03 MBytes  17.0 Mbits/sec  260  
+[  4]   7.00-8.00   sec  2.02 MBytes  17.0 Mbits/sec  259  
+[  4]   8.00-9.00   sec  2.02 MBytes  17.0 Mbits/sec  259  
+[  4]   9.00-10.00  sec  2.03 MBytes  17.0 Mbits/sec  260  
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[ ID] Interval           Transfer     Bandwidth       Jitter    Lost/Total Datagrams
+[  4]   0.00-10.00  sec  20.1 MBytes  16.9 Mbits/sec  4.233 ms  3/2574 (0.12%)  
+[  4] Sent 2574 datagrams
+
+iperf Done.
+
+
+-----------------------------------------------------------
+Server listening on 5201
+-----------------------------------------------------------
+Accepted connection from 192.168.1.129, port 33502
+[  5] local 192.168.1.1 port 5201 connected to 192.168.1.129 port 51439
+[ ID] Interval           Transfer     Bandwidth       Jitter    Lost/Total Datagrams
+[  5]   0.00-1.00   sec  1.81 MBytes  15.2 Mbits/sec  2.182 ms  3/235 (1.3%)  
+[  5]   1.00-2.00   sec  2.02 MBytes  17.0 Mbits/sec  2.192 ms  0/259 (0%)  
+[  5]   2.00-3.00   sec  2.03 MBytes  17.0 Mbits/sec  2.207 ms  0/260 (0%)  
+[  5]   3.00-4.00   sec  2.02 MBytes  17.0 Mbits/sec  2.169 ms  0/259 (0%)  
+[  5]   4.00-5.00   sec  2.02 MBytes  17.0 Mbits/sec  2.206 ms  0/259 (0%)  
+[  5]   5.00-6.00   sec  2.03 MBytes  17.0 Mbits/sec  2.222 ms  0/260 (0%)  
+[  5]   6.00-7.00   sec  2.02 MBytes  17.0 Mbits/sec  2.162 ms  0/259 (0%)  
+[  5]   7.00-8.00   sec  2.03 MBytes  17.0 Mbits/sec  2.217 ms  0/260 (0%)  
+[  5]   8.00-9.00   sec  2.02 MBytes  17.0 Mbits/sec  2.231 ms  0/259 (0%)  
+[  5]   9.00-10.00  sec  2.03 MBytes  17.0 Mbits/sec  2.188 ms  0/260 (0%)  
+[  5]  10.00-10.05  sec  32.0 KBytes  5.11 Mbits/sec  4.233 ms  0/4 (0%)  
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[ ID] Interval           Transfer     Bandwidth       Jitter    Lost/Total Datagrams
+[  5]   0.00-10.05  sec  0.00 Bytes  0.00 bits/sec  4.233 ms  3/2574 (0.12%)  
+
+# TCP iperf - 4 streams
+
+[ 10]   4.00-5.00   sec  79.2 KBytes   649 Kbits/sec    0   4.24 KBytes       
+[SUM]   4.00-5.00   sec   208 KBytes  1.70 Mbits/sec    0             
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[  4]   5.00-6.00   sec  58.0 KBytes   475 Kbits/sec    0   4.24 KBytes       
+[  6]   5.00-6.00   sec  56.6 KBytes   463 Kbits/sec    0   7.07 KBytes       
+[  8]   5.00-6.00   sec  63.6 KBytes   521 Kbits/sec    0   5.66 KBytes       
+[ 10]   5.00-6.00   sec  12.7 KBytes   104 Kbits/sec    0   1.41 KBytes       
+[SUM]   5.00-6.00   sec   191 KBytes  1.56 Mbits/sec    0             
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[  4]   6.00-7.00   sec  63.6 KBytes   522 Kbits/sec    0   8.48 KBytes       
+[  6]   6.00-7.00   sec  66.5 KBytes   545 Kbits/sec    0   5.66 KBytes       
+[  8]   6.00-7.00   sec  45.2 KBytes   371 Kbits/sec    0   2.83 KBytes       
+[ 10]   6.00-7.00   sec  0.00 Bytes  0.00 bits/sec    0   1.41 KBytes       
+[SUM]   6.00-7.00   sec   175 KBytes  1.44 Mbits/sec    0             
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[  4]   7.00-8.00   sec  65.0 KBytes   533 Kbits/sec    0   4.24 KBytes       
+[  6]   7.00-8.00   sec  52.3 KBytes   429 Kbits/sec    0   2.83 KBytes       
+[  8]   7.00-8.00   sec  80.6 KBytes   661 Kbits/sec    0   7.07 KBytes       
+[ 10]   7.00-8.00   sec  41.0 KBytes   336 Kbits/sec    0   2.83 KBytes       
+[SUM]   7.00-8.00   sec   239 KBytes  1.96 Mbits/sec    0             
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[  4]   8.00-9.00   sec  59.4 KBytes   487 Kbits/sec    0   8.48 KBytes       
+[  6]   8.00-9.00   sec  8.48 KBytes  69.5 Kbits/sec    0   1.41 KBytes       
+[  8]   8.00-9.00   sec  72.1 KBytes   591 Kbits/sec    0   2.83 KBytes       
+[ 10]   8.00-9.00   sec  59.4 KBytes   487 Kbits/sec    0   2.83 KBytes       
+[SUM]   8.00-9.00   sec   199 KBytes  1.63 Mbits/sec    0             
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[  4]   9.00-10.00  sec  63.6 KBytes   521 Kbits/sec    0   5.66 KBytes       
+[  6]   9.00-10.00  sec  66.5 KBytes   544 Kbits/sec    0   5.66 KBytes       
+[  8]   9.00-10.00  sec  24.0 KBytes   197 Kbits/sec    0   4.24 KBytes       
+[ 10]   9.00-10.00  sec  22.6 KBytes   185 Kbits/sec    0   1.41 KBytes       
+[SUM]   9.00-10.00  sec   177 KBytes  1.45 Mbits/sec    0             
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[ ID] Interval           Transfer     Bandwidth       Retr
+[  4]   0.00-10.00  sec   615 KBytes   504 Kbits/sec    0             sender
+[  4]   0.00-10.00  sec   551 KBytes   452 Kbits/sec                  receiver
+[  6]   0.00-10.00  sec   578 KBytes   474 Kbits/sec    0             sender
+[  6]   0.00-10.00  sec   532 KBytes   436 Kbits/sec                  receiver
+[  8]   0.00-10.00  sec   494 KBytes   404 Kbits/sec    0             sender
+[  8]   0.00-10.00  sec   430 KBytes   352 Kbits/sec                  receiver
+[ 10]   0.00-10.00  sec   431 KBytes   353 Kbits/sec    0             sender
+[ 10]   0.00-10.00  sec   373 KBytes   306 Kbits/sec                  receiver
+[SUM]   0.00-10.00  sec  2.07 MBytes  1.74 Mbits/sec    0             sender
+[SUM]   0.00-10.00  sec  1.84 MBytes  1.55 Mbits/sec                  receiver
+
+iperf Done.
+
+
+-----------------------------------------------------------
+Server listening on 5201
+-----------------------------------------------------------
+Accepted connection from 192.168.1.129, port 33506
+[  5] local 192.168.1.1 port 5201 connected to 192.168.1.129 port 33508
+[  7] local 192.168.1.1 port 5201 connected to 192.168.1.129 port 33510
+[  9] local 192.168.1.1 port 5201 connected to 192.168.1.129 port 33512
+[ 11] local 192.168.1.1 port 5201 connected to 192.168.1.129 port 33514
+[ ID] Interval           Transfer     Bandwidth
+[  5]   0.00-1.00   sec  65.0 KBytes   533 Kbits/sec                  
+[  7]   0.00-1.00   sec  87.7 KBytes   718 Kbits/sec                  
+[  9]   0.00-1.00   sec  12.7 KBytes   104 Kbits/sec                  
+[ 11]   0.00-1.00   sec  22.6 KBytes   185 Kbits/sec                  
+[SUM]   0.00-1.00   sec   188 KBytes  1.54 Mbits/sec                  
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[  5]   1.00-2.00   sec  46.7 KBytes   382 Kbits/sec                  
+[  7]   1.00-2.00   sec  42.4 KBytes   348 Kbits/sec                  
+[  9]   1.00-2.00   sec  38.2 KBytes   313 Kbits/sec                  
+[ 11]   1.00-2.00   sec  31.1 KBytes   255 Kbits/sec                  
+[SUM]   1.00-2.00   sec   158 KBytes  1.30 Mbits/sec                  
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[  5]   2.00-3.00   sec  14.1 KBytes   116 Kbits/sec                  
+[  7]   2.00-3.00   sec  42.4 KBytes   348 Kbits/sec                  
+[  9]   2.00-3.00   sec   103 KBytes   846 Kbits/sec                  
+[ 11]   2.00-3.00   sec  31.1 KBytes   255 Kbits/sec                  
+[SUM]   2.00-3.00   sec   191 KBytes  1.56 Mbits/sec                  
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[  5]   3.00-4.00   sec  52.3 KBytes   429 Kbits/sec                  
+[  7]   3.00-4.00   sec  17.0 KBytes   139 Kbits/sec                  
+[  9]   3.00-4.00   sec  43.8 KBytes   359 Kbits/sec                  
+[ 11]   3.00-4.00   sec  45.2 KBytes   371 Kbits/sec                  
+[SUM]   3.00-4.00   sec   158 KBytes  1.30 Mbits/sec                  
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[  5]   4.00-5.00   sec  52.3 KBytes   429 Kbits/sec                  
+[  7]   4.00-5.00   sec  21.2 KBytes   174 Kbits/sec                  
+[  9]   4.00-5.00   sec  76.4 KBytes   626 Kbits/sec                  
+[ 11]   4.00-5.00   sec   107 KBytes   880 Kbits/sec                  
+[SUM]   4.00-5.00   sec   257 KBytes  2.11 Mbits/sec                  
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[  5]   5.00-6.00   sec  41.0 KBytes   336 Kbits/sec                  
+[  7]   5.00-6.00   sec  65.0 KBytes   533 Kbits/sec                  
+[  9]   5.00-6.00   sec  42.4 KBytes   348 Kbits/sec                  
+[ 11]   5.00-6.00   sec  45.2 KBytes   371 Kbits/sec                  
+[SUM]   5.00-6.00   sec   194 KBytes  1.59 Mbits/sec                  
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[  5]   6.00-7.00   sec  39.6 KBytes   324 Kbits/sec                  
+[  7]   6.00-7.00   sec  32.5 KBytes   266 Kbits/sec                  
+[  9]   6.00-7.00   sec  76.4 KBytes   626 Kbits/sec                  
+[ 11]   6.00-7.00   sec  66.5 KBytes   544 Kbits/sec                  
+[SUM]   6.00-7.00   sec   215 KBytes  1.76 Mbits/sec                  
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[  5]   7.00-8.00   sec  36.8 KBytes   301 Kbits/sec                  
+[  7]   7.00-8.00   sec  70.7 KBytes   579 Kbits/sec                  
+[  9]   7.00-8.00   sec  33.9 KBytes   278 Kbits/sec                  
+[ 11]   7.00-8.00   sec  79.2 KBytes   649 Kbits/sec                  
+[SUM]   7.00-8.00   sec   221 KBytes  1.81 Mbits/sec                  
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[  5]   8.00-9.00   sec  84.8 KBytes   695 Kbits/sec                  
+[  7]   8.00-9.00   sec  77.8 KBytes   637 Kbits/sec                  
+[  9]   8.00-9.00   sec  35.4 KBytes   290 Kbits/sec                  
+[ 11]   8.00-9.00   sec  59.4 KBytes   487 Kbits/sec                  
+[SUM]   8.00-9.00   sec   257 KBytes  2.11 Mbits/sec                  
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[  5]   9.00-10.00  sec  89.1 KBytes   730 Kbits/sec                  
+[  7]   9.00-10.00  sec  9.90 KBytes  81.1 Kbits/sec                  
+[  9]   9.00-10.00  sec  55.1 KBytes   452 Kbits/sec                  
+[ 11]   9.00-10.00  sec  31.1 KBytes   255 Kbits/sec                  
+[SUM]   9.00-10.00  sec   185 KBytes  1.52 Mbits/sec                  
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[  5]  10.00-10.26  sec  9.90 KBytes   315 Kbits/sec                  
+[  7]  10.00-10.26  sec  15.6 KBytes   496 Kbits/sec                  
+[  9]  10.00-10.26  sec  18.4 KBytes   586 Kbits/sec                  
+[ 11]  10.00-10.26  sec  9.90 KBytes   315 Kbits/sec                  
+[SUM]  10.00-10.26  sec  53.7 KBytes  1.71 Mbits/sec                  
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[ ID] Interval           Transfer     Bandwidth
+[  5]   0.00-10.26  sec  0.00 Bytes  0.00 bits/sec                  sender
+[  5]   0.00-10.26  sec   532 KBytes   425 Kbits/sec                  receiver
+[  7]   0.00-10.26  sec  0.00 Bytes  0.00 bits/sec                  sender
+[  7]   0.00-10.26  sec   482 KBytes   385 Kbits/sec                  receiver
+[  9]   0.00-10.26  sec  0.00 Bytes  0.00 bits/sec                  sender
+[  9]   0.00-10.26  sec   536 KBytes   428 Kbits/sec                  receiver
+[ 11]   0.00-10.26  sec  0.00 Bytes  0.00 bits/sec                  sender
+[ 11]   0.00-10.26  sec   529 KBytes   422 Kbits/sec                  receiver
+[SUM]   0.00-10.26  sec  0.00 Bytes  0.00 bits/sec                  sender
+[SUM]   0.00-10.26  sec  2.03 MBytes  1.66 Mbits/sec                  receiver
+
+
+# ping times whilst testing network throughput
+
+64 bytes from 192.168.1.1: icmp_seq=3 ttl=64 time=53.0 ms
+64 bytes from 192.168.1.1: icmp_seq=4 ttl=64 time=2.10 ms
+64 bytes from 192.168.1.1: icmp_seq=5 ttl=64 time=17.6 ms
+64 bytes from 192.168.1.1: icmp_seq=6 ttl=64 time=1.57 ms
+64 bytes from 192.168.1.1: icmp_seq=7 ttl=64 time=21.7 ms
+64 bytes from 192.168.1.1: icmp_seq=8 ttl=64 time=27.9 ms
+64 bytes from 192.168.1.1: icmp_seq=9 ttl=64 time=1.58 ms
+64 bytes from 192.168.1.1: icmp_seq=10 ttl=64 time=1.59 ms
+64 bytes from 192.168.1.1: icmp_seq=11 ttl=64 time=1.47 ms
+64 bytes from 192.168.1.1: icmp_seq=12 ttl=64 time=2.14 ms
+64 bytes from 192.168.1.1: icmp_seq=13 ttl=64 time=1.68 ms
+64 bytes from 192.168.1.1: icmp_seq=14 ttl=64 time=1.63 ms
+64 bytes from 192.168.1.1: icmp_seq=15 ttl=64 time=1.53 ms
+64 bytes from 192.168.1.1: icmp_seq=16 ttl=64 time=1.71 ms
+64 bytes from 192.168.1.1: icmp_seq=17 ttl=64 time=1.53 ms
+64 bytes from 192.168.1.1: icmp_seq=18 ttl=64 time=1.60 ms
+64 bytes from 192.168.1.1: icmp_seq=19 ttl=64 time=0.997 ms
+64 bytes from 192.168.1.1: icmp_seq=20 ttl=64 time=1.55 ms
+64 bytes from 192.168.1.1: icmp_seq=21 ttl=64 time=0.937 ms
+64 bytes from 192.168.1.1: icmp_seq=22 ttl=64 time=1.09 ms
+64 bytes from 192.168.1.1: icmp_seq=23 ttl=64 time=0.977 ms
+64 bytes from 192.168.1.1: icmp_seq=24 ttl=64 time=1.00 ms
+64 bytes from 192.168.1.1: icmp_seq=26 ttl=64 time=27.4 ms
+64 bytes from 192.168.1.1: icmp_seq=27 ttl=64 time=19.0 ms
+64 bytes from 192.168.1.1: icmp_seq=28 ttl=64 time=2.07 ms
+64 bytes from 192.168.1.1: icmp_seq=29 ttl=64 time=5.93 ms
+64 bytes from 192.168.1.1: icmp_seq=30 ttl=64 time=77.0 ms
+64 bytes from 192.168.1.1: icmp_seq=31 ttl=64 time=61.4 ms
+64 bytes from 192.168.1.1: icmp_seq=32 ttl=64 time=41.7 ms
+64 bytes from 192.168.1.1: icmp_seq=33 ttl=64 time=85.5 ms
+64 bytes from 192.168.1.1: icmp_seq=34 ttl=64 time=35.5 ms
+64 bytes from 192.168.1.1: icmp_seq=35 ttl=64 time=49.9 ms
+64 bytes from 192.168.1.1: icmp_seq=36 ttl=64 time=74.9 ms
+64 bytes from 192.168.1.1: icmp_seq=39 ttl=64 time=66.6 ms
+64 bytes from 192.168.1.1: icmp_seq=40 ttl=64 time=80.6 ms
+64 bytes from 192.168.1.1: icmp_seq=41 ttl=64 time=58.8 ms
+64 bytes from 192.168.1.1: icmp_seq=42 ttl=64 time=5.91 ms
+64 bytes from 192.168.1.1: icmp_seq=43 ttl=64 time=2.13 ms
+64 bytes from 192.168.1.1: icmp_seq=44 ttl=64 time=1.62 ms
+64 bytes from 192.168.1.1: icmp_seq=45 ttl=64 time=1.03 ms
+64 bytes from 192.168.1.1: icmp_seq=46 ttl=64 time=1.01 ms
+64 bytes from 192.168.1.1: icmp_seq=47 ttl=64 time=1.06 ms
+64 bytes from 192.168.1.1: icmp_seq=48 ttl=64 time=1.04 ms
+64 bytes from 192.168.1.1: icmp_seq=49 ttl=64 time=1.04 ms
+
+
+
