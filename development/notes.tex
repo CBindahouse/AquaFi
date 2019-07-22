@@ -619,3 +619,21 @@ and with Chao Shen and we've all come to the conclusion that whilst SFP and
 ethernet seem to be a nice simple choice it's probably better in the long run
 to concentrate on traditional WiFi (or LiFi in this case) because of the
 extremely varying channel that we're trying to operate in.
+
+\section{Development - 22/07/2019}
+So, what protocol would be best which has knowledge of beam forming (if this
+is appropriate - bear in mind lasers are 'always on' which means we could use
+some alternative means of alignment, BUT I think the highest accuracy would
+be by using the receiver itself which means baking beam forming into the
+protocol).
+
+802.11ac has beamforming, but it may be more appropriate for multiple antennas.
+
+802.11ad has beamforming and it uses a single antenna.
+
+5G NR has beamforming built in. See
+\url{https://www.rcrwireless.com/20180912/5g/5g-nr-massive-mimo-and-beamforming-what-does-it-mean-and-how-can-i-measure-it-in-the-field}
+
+Beamforming overview in VLC here:
+\url{https://www.osapublishing.org/DirectPDFAccess/FE4CDA39-F222-F4C5-770C2AF1038FBD5E_396445/copp-2-4-308.pdf?da=1&id=396445&seq=0&mobile=no}
+
